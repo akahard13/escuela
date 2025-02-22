@@ -13,4 +13,8 @@ class CatRoles extends Model
     public $timestamps = true;
 
     protected $fillable = ['nombre', 'activo', 'eliminado'];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

@@ -1,15 +1,18 @@
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
+import LabeledInput from '@/Components/LabeledInput';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Register() {
+export default function Register({roles}) {
+    console.log(roles);
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
+        username: '',
         email: '',
         password: '',
+        rol: '',
         password_confirmation: '',
     });
 
@@ -27,22 +30,35 @@ export default function Register() {
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
+                    <InputLabel htmlFor="username" value="Username" />
                     <TextInput
                         id="name"
                         name="name"
-                        value={data.name}
+                        value={data.username}
                         className="mt-1 block w-full"
-                        autoComplete="name"
+                        autoComplete="username"
                         isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
+                        onChange={(e) => setData('username', e.target.value)}
+                        required
+                    />
+                    <InputError message={errors.username} className="mt-2" />
+                </div>
+                <div className="mt-4">
+                    <InputLabel htmlFor="rol" value="Rol" />
+
+                    <TextInput
+                        id="rol"
+                        type="text"
+                        name="rol"
+                        value={data.rol}
+                        className="mt-1 block w-full"
+                        autoComplete="rol"
+                        onChange={(e) => setData('rol', e.target.value)}
                         required
                     />
 
-                    <InputError message={errors.name} className="mt-2" />
+                    <InputError message={errors.email} className="mt-2" />
                 </div>
-
                 <div className="mt-4">
                     <InputLabel htmlFor="email" value="Email" />
 

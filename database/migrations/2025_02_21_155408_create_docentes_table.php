@@ -15,7 +15,8 @@ return new class extends Migration
             $table->string('nombre', 100);
             $table->string('apellido', 100);
             $table->string('especialidad', 100)->nullable();
-            $table->string('inss', 20)->nullable();
+            $table->string('inss', 20)->nullable()->unique();
+            $table->string('celular', 15)->nullable()->unique();
             $table->date('fecha_contratacion')->nullable();
             $table->foreign('usuario')->references('id')->on('public.users')->onDelete('cascade');
             $table->timestamps();

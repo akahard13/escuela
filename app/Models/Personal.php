@@ -8,7 +8,7 @@ class Personal extends Model {
     use HasFactory;
 
     protected $table = 'administracion.personal';
-    protected $fillable = ['usuario', 'nombre', 'apellido', 'inss', 'fecha_contratacion'];
+    protected $fillable = ['usuario', 'nombre', 'apellido', 'inss', 'celular', 'fecha_contratacion'];
 
     // Relación con el modelo Usuario
     public function usuario() {

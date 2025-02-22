@@ -2,13 +2,17 @@ import Checkbox from '@/Components/Checkbox';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
+import { InputText } from 'primereact/inputtext';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import LabeledInput from '@/Components/LabeledInput';
+import Password from '@/Components/Password';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
+        username: '',
         password: '',
         remember: false,
     });
@@ -32,36 +36,32 @@ export default function Login({ status, canResetPassword }) {
             )}
 
             <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <LabeledInput
+                        id="username"
+                        type="text"
+                        name="username"
+                        label="Username"
+                        value={data.username}
+                        className="mt-1 block w-full"
+                        onChange={(e) => setData('username', e.target.value)}
+                    />
+                    <InputError message={errors.username} className="mt-2" />
+                </div>
 
-                    <TextInput
+                <div className="mt-6">
+                    <Password
                         id="password"
                         type="password"
                         name="password"
+                        label="Password"
+                        feedback={true}
+                        toggleMask={true}
                         value={data.password}
                         className="mt-1 block w-full"
-                        autoComplete="current-password"
                         onChange={(e) => setData('password', e.target.value)}
                     />
-
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 

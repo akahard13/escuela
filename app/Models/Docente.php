@@ -9,7 +9,7 @@ class Docente extends Model
 {
     use HasFactory;
     protected $table = 'docentes';
-    protected $fillable = ['usuario',  'nombre', 'apellido', 'especialidad', 'inss', 'fecha_contratacion'];
+    protected $fillable = ['usuario',  'nombre', 'apellido', 'especialidad', 'celular', 'inss', 'fecha_contratacion'];
     public $timestamps = true;
 
     public function usuario()
