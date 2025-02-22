@@ -51,13 +51,11 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-6">
-                    <Password
+                <LabeledInput
                         id="password"
                         type="password"
                         name="password"
                         label="Password"
-                        feedback={true}
-                        toggleMask={true}
                         value={data.password}
                         className="mt-1 block w-full"
                         onChange={(e) => setData('password', e.target.value)}
