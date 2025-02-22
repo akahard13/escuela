@@ -7,6 +7,7 @@ use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
+    use \App\Traits\AssignUser;
     /**
      * The root template that is loaded on the first page visit.
      *
@@ -33,6 +34,7 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                'info' => $this->datosUsuario($request->user()?$request->user():null),
             ],
         ];
     }

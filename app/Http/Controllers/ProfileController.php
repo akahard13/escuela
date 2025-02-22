@@ -13,6 +13,7 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
+    use \App\Traits\AssignUser;
     /**
      * Display the user's profile form.
      */
@@ -31,14 +32,23 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
+        $usuario = $this->datosUsuario($request->user());
+
+        if ($usuario) { // Verificamos que exista el usuario antes de actualizar
+            $usuario->update([
+                'nombre' => $request->nombre,
+                'apellido' => $request->apellido
+            ]);
+        }
+
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
 
         $request->user()->save();
-
         return Redirect::route('profile.edit');
     }
+
 
     /**
      * Delete the user's account.

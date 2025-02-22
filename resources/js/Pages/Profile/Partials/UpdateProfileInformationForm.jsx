@@ -11,10 +11,12 @@ export default function UpdateProfileInformation({
     className = '',
 }) {
     const user = usePage().props.auth.user;
+    const info = usePage().props.auth.info;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
-            name: user.name,
+            nombre: info.nombre,
+            apellido: info.apellido,
             email: user.email,
         });
 
@@ -38,13 +40,13 @@ export default function UpdateProfileInformation({
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
+                    <InputLabel htmlFor="nombre" value="Nombre" />
 
                     <TextInput
-                        id="name"
+                        id="nombre"
                         className="mt-1 block w-full"
-                        value={data.name}
-                        onChange={(e) => setData('name', e.target.value)}
+                        value={data.nombre}
+                        onChange={(e) => setData('nombre', e.target.value)}
                         required
                         isFocused
                         autoComplete="name"
@@ -52,7 +54,21 @@ export default function UpdateProfileInformation({
 
                     <InputError className="mt-2" message={errors.name} />
                 </div>
+                <div>
+                    <InputLabel htmlFor="apellido" value="Apellido" />
 
+                    <TextInput
+                        id="apellido"
+                        className="mt-1 block w-full"
+                        value={data.apellido}
+                        onChange={(e) => setData('apellido', e.target.value)}
+                        required
+                        isFocused
+                        autoComplete="apellido"
+                    />
+
+                    <InputError className="mt-2" message={errors.apellido} />
+                </div>
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
 

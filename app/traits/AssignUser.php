@@ -31,4 +31,18 @@ trait AssignUser
                 return response()->json(['message' => 'Rol no valido'], 400);
         }
     }
+
+    public function datosUsuario($user)
+    {
+        if ($user) {
+            switch ($user->rol) {
+                case 1:
+                    return Personal::where('usuario', $user->id)->first();
+                case 2:
+                    return Docente::where('usuario', $user->id)->first();
+                default:
+                    return Estudiante::where('usuario', $user->id)->first();
+            }
+        }
+    }
 }
